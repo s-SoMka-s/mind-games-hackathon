@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("assets/img/background.png");
+}
+
+.main {
+    margin-right: 10%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+
+thead {
+    background-color: #e03e3b;
+}
+
+tbody tr td:first-child {
+    padding-left: 16px;
+}
+
+th:first-child {
+    padding-left: 16px;
+    padding-right: 34px;
+}
+
+th:nth-child(2) {
+    padding-right: 76px;
+}
+
+th:last-child {
+    padding-right: 54px;
+}
+
+th {
+    padding-right: 134px;
+}
+
+#hieroglyph {
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.info-pannel {
+    max-width: 340px;
+}
+
+.go-table-section {
+    max-width: 100%;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls button {
+    width: 49%;
+    background-color: #3c3c3a;
+}
+
+.total-parameters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-parameters p {
+    max-width: 49%;
+    margin: auto;
+}
+
+.parameter {
+    display: flex;
+    justify-content: space-around;
+}
