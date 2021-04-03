@@ -1,9 +1,9 @@
 <template>
-    <div class="game-info-container">
-        <div class="game-table">
-            <img scr="../assets/game.png" />
+    <md-card class="game-info-container">
+        <div class="game-table section">
+            <img class="game-board" src="../assets/game.png" />
         </div>
-        <div class="controls">
+        <div class="controls section">
             <md-button class="controls-item md-raised md-primary"
                 >Previous move</md-button
             >
@@ -11,8 +11,8 @@
                 >Next move</md-button
             >
         </div>
-        <div class="game-info">
-            <div class="general-info">
+        <div class="game-info section">
+            <div class="general-info section">
                 <div class="general-info-item">
                     score: 228
                 </div>
@@ -20,7 +20,7 @@
                     Duration: 1 hour
                 </div>
             </div>
-            <div class="players-info">
+            <div class="players-info section">
                 <div class="players-info-item">
                     <img class="player-color" src="../assets/black.png" />Andrey
                     Fisher
@@ -30,7 +30,7 @@
                     Fisher
                 </div>
             </div>
-            <div class="additional-info">
+            <div class="additional-info section">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Quisque id diam vel quam elementum. Amet purus gravida quis
@@ -39,7 +39,7 @@
                 Risus quis varius quam quisque id diam vel quam elementum
             </div>
         </div>
-    </div>
+    </md-card>
 </template>
 <script>
 export default {
@@ -60,19 +60,24 @@ export default {
     justify-content: space-between;
 }
 
-.game-table {
-    background-color: black;
-    height: 304px;
-}
-
 .general-info {
     display: flex;
     justify-content: space-between;
 }
+.section {
+    border: 1px black dotted;
+}
+.general-info-item {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #e03e3b;
+}
 
-img {
+.game-board {
     height: 304px;
-    width: 304px;
+    width: 340px;
 }
 
 .player-color {
