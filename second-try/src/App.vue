@@ -22,5 +22,6 @@ export default {
 .container {
     display: flex;
     justify-content: space-between;
+    background-image: url('./assets/background.png');
 }
 </style>
