@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/parse'
+const url = 'http://localhost:3000/api'
 const is_logged_in = false
 
 function sendPost() {
@@ -13,7 +13,7 @@ function sendPost() {
 }
 
 function sendGet() {
-    send().then((resp) => parse(resp))
+    send().then((resp) => console.log(resp))
 }
 
 function send(method = 'GET', body = null) {
