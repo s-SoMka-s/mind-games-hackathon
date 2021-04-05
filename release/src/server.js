@@ -26,15 +26,15 @@ app.get('/api', (request, response) => {
     }
 
     fetch('https://www.gokgs.com/json-cors/access', requestOptions)
-        .then((res) => res.json())
-        .then((result) => {
+        .then(res => res.json())
+        .then(result => {
             console.log(result)
             response.send(result)
         })
-        .catch((error) => console.log('error', error))
+        .catch(error => console.log('error', error))
 })
 
-app.post('/api', function (r, res) {
+app.post('/api', function(r, res) {
     const body = r.body
     const fetch = require('node-fetch')
     console.log(JSON.stringify(body))
@@ -50,7 +50,7 @@ app.post('/api', function (r, res) {
         body: JSON.stringify(body),
     }
 
-    fetch(url, options).then((response) => {
+    fetch(url, options).then(response => {
         cookie = response.headers.get('set-cookie')
         res.send(cookie)
     })
@@ -71,13 +71,13 @@ app.get('/parse', (request, response) => {
     }
 
     fetch('https://www.gokgs.com/top100.jsp', requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
+        .then(response => response.text())
+        .then(result => {
             var res = parse(result)
             console.log(res.length)
             response.send(res)
         })
-        .catch((error) => console.log('error', error))
+        .catch(error => console.log('error', error))
 })
 
 const PORT = process.env.PORT || 3000
