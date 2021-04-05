@@ -1,14 +1,14 @@
 <template>
     <div class="page-container">
         <liderboard
+            :isPannelOpened="isPannelOpened"
             class="liderboard"
-            :class="{ liderboard__active: isMenuOpen }"
+            :class="{ liderboard__active: isPannelOpened }"
+            v-on:onRowClick="onRowClick"
         ></liderboard>
-
-        <button v-on:click="isMenuOpen = !isMenuOpen">Открыть</button>
         <game-info
             class="game-info"
-            :class="{ 'game-info__active': isMenuOpen }"
+            :class="{ 'game-info__active': isPannelOpened }"
         ></game-info>
     </div>
 </template>
@@ -19,9 +19,15 @@ import Liderboard from './components/Liderboard.vue'
 export default {
     name: 'App',
     data: function() {
-        return { isMenuOpen: true }
+        return { isPannelOpened: true }
     },
     components: { Liderboard, GameInfo },
+    methods: {
+        onRowClick(value) {
+            console.log('clicked')
+            this.isPannelOpened = value
+        },
+    },
 }
 </script>
 

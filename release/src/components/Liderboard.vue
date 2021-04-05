@@ -28,8 +28,16 @@
                 <td>
                     {{ user.score }}
                 </td>
-                <td>Game_1</td>
-                <td>Game_2</td>
+                <td>
+                    <span class="body__row-textbtn" v-on:click="emitToParent"
+                        >Game_1</span
+                    >
+                </td>
+                <td>
+                    <span class="body__row-textbtn" v-on:click="emitToParent"
+                        >Game_2</span
+                    >
+                </td>
             </tr>
         </tbody>
     </table>
@@ -51,10 +59,18 @@ export default {
             users: [],
         }
     },
+    props: {
+        isPannelOpened: Boolean,
+    },
     created: function() {
         this.loadUsers()
     },
     methods: {
+        emitToParent(event) {
+            console.log('clicked')
+            this.$emit('onRowClick', !this.isPannelOpened)
+        },
+
         loadUsers: function() {
             const url = 'http://localhost:3000/parse'
             const options = {
@@ -120,6 +136,10 @@ table {
                 color: $color-white;
                 transform: scale(1.007);
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            &-textbtn {
+                cursor: pointer;
             }
         }
     }
