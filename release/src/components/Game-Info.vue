@@ -5,22 +5,38 @@
         </div>
         <div class="game-info__controls">
             <div class="game-info__controls-item">
-                <button>Previous move</button>
+                <button>
+                    <span class="game-info__controls-item-text"
+                        >Previous move</span
+                    >
+                </button>
             </div>
             <div class="game-info__controls-item">
-                <button>Next move</button>
+                <button>
+                    <span class="game-info__controls-item-text">Next move</span>
+                </button>
             </div>
         </div>
         <div class="game-info__totals">
-            <div class="game-info__totals-item">Score: 228</div>
-            <div class="game-info__totals-item">Score: 228</div>
+            <div class="game-info__totals-item">
+                <span class="game-info__totals-item-text">Score: 228</span>
+            </div>
+            <div class="game-info__totals-item">
+                <span class="game-info__totals-item-text">Score: 228</span>
+            </div>
         </div>
         <div class="game-info__players">
             <div class="game-info__players-item">
-                <img src="../assets/black.png" />Andrew Fisher - W
+                <img src="../assets/black.png" /><span
+                    clas="game-info__players-item-text"
+                    >Andrew Fisher - W</span
+                >
             </div>
             <div class="game-info__players-item">
-                <img src="../assets/white.png" />Daniel Nicola - L
+                <img src="../assets/white.png" /><span
+                    class="game-info__players-item-text"
+                    >Daniel Nicola - L</span
+                >
             </div>
         </div>
         <div class="game-info__additional">
@@ -46,6 +62,10 @@ export default {
 }
 </script>
 <style lang="scss">
+$color-red: #e03e3b;
+$color-black: #3c3c3a;
+$color-white: #ffffff;
+
 .game-info {
     background-color: white;
 
@@ -63,6 +83,16 @@ export default {
 
         &-item {
             min-width: 50%;
+
+            button {
+                width: 100%;
+                height: 32px;
+                background-color: $color-black;
+            }
+
+            &-text {
+                color: $color-white;
+            }
         }
     }
 
@@ -70,6 +100,26 @@ export default {
         width: 100%;
         display: flex;
         justify-content: space-between;
+
+        &-item {
+            width: 50%;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 10%;
+            padding-right: 10%;
+
+            &-text {
+                color: $color-red;
+            }
+        }
+    }
+
+    &__players {
+        &-item {
+            &-text {
+                color: $color-black;
+            }
+        }
     }
 }
 </style>
