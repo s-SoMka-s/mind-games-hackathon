@@ -1,19 +1,33 @@
 <template>
     <table class="table table-borderless">
-        <thead>
+        <thead class="header">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Score</th>
-                <th scope="col">Game_1</th>
-                <th scope="col">Game_2</th>
+                <th class="align-middle" style="max-width: 27px">
+                    <img src="../assets/id.png" />
+                </th>
+                <th class="align-middle">
+                    <span class="header__text">Name</span>
+                </th>
+                <th class="align-middle">
+                    <span class="header__text">Total score</span>
+                </th>
+                <th class="align-middle">
+                    <span class="header__text">Game_1</span>
+                </th>
+                <th class="align-middle">
+                    <span class="header__text">Game_2</span>
+                </th>
             </tr>
         </thead>
         <tbody v-if="users.length">
-            <tr v-for="user in users" v-bind:key="user.id">
-                <th scope="row">{{ user.id }}</th>
-                <td>{{ user.name }}</td>
-                <td>{{ user.score }}</td>
+            <tr v-for="user in users" v-bind:key="user.id" class="body__row">
+                <th>{{ user.id }}.</th>
+                <td>
+                    {{ user.name }}
+                </td>
+                <td>
+                    {{ user.score }}
+                </td>
                 <td>Game_1</td>
                 <td>Game_2</td>
             </tr>
@@ -61,7 +75,53 @@ export default {
 }
 </script>
 <style lang="scss">
+@font-face {
+    font-family: 'Aqua';
+    src: url('../assets/fonts/aqua-webfont.woff') format('woff'),
+        url('../assets/fonts/aqua-webfont.woff2') format('woff2');
+}
+
+@mixin general-text {
+    font-family: 'Aqua', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -0.06em;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+$color-red: #e03e3b;
+$color-black: #3c3c3a;
+$color-white: #ffffff;
+
 table {
     background-color: white;
+
+    .header {
+        background-color: $color-red;
+
+        th {
+            vertical-align: middle;
+        }
+
+        &__text {
+            color: $color-white;
+            @include general-text;
+        }
+    }
+
+    .body {
+        &__row {
+            color: $color-black;
+            @include general-text;
+
+            &:hover {
+                background-color: $color-black;
+                color: $color-white;
+                transform: scale(1.007);
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
 }
 </style>

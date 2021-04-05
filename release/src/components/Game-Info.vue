@@ -28,7 +28,7 @@
         <div class="game-info__players">
             <div class="game-info__players-item">
                 <img src="../assets/black.png" /><span
-                    clas="game-info__players-item-text"
+                    class="game-info__players-item-text"
                     >Andrew Fisher - W</span
                 >
             </div>
@@ -62,6 +62,15 @@ export default {
 }
 </script>
 <style lang="scss">
+@mixin general-text {
+    font-family: 'Aqua', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: -0.06em;
+    font-size: 18px;
+    line-height: 18px;
+}
+
 $color-red: #e03e3b;
 $color-black: #3c3c3a;
 $color-white: #ffffff;
@@ -92,6 +101,7 @@ $color-white: #ffffff;
 
             &-text {
                 color: $color-white;
+                @include general-text;
             }
         }
     }
@@ -110,6 +120,7 @@ $color-white: #ffffff;
 
             &-text {
                 color: $color-red;
+                @include general-text;
             }
         }
     }
@@ -118,6 +129,7 @@ $color-white: #ffffff;
         &-item {
             &-text {
                 color: $color-black;
+                @include general-text;
             }
         }
     }
