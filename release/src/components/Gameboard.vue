@@ -55,29 +55,7 @@ export default {
                     cell.style.display = 'none'
                     continue
                 }
-
-                const newImg = document.createElement('img')
-                newImg.src = black
-                newImg.style.height = `${imgSize}px`
-                newImg.style.position = 'relative'
-                newImg.style.left = `-${imgSize / 2}px`
-                newImg.style.top = `-${imgSize / 2}px`
-                cell.appendChild(newImg)
             }
-        }
-
-        for (var col = 0; col < this.columns; col++) {
-            const cell = document.getElementById(
-                `(${this.rows - 1},${col + 1})`
-            )
-
-            const newImg = document.createElement('img')
-            newImg.src = black
-            newImg.style.height = `${imgSize}px`
-            newImg.style.position = 'relative'
-            newImg.style.left = `-${imgSize * 1.5}px`
-            newImg.style.bottom = `-${imgSize * 4.5}px`
-            cell.appendChild(newImg)
         }
     },
 }
