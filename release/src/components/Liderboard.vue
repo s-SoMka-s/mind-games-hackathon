@@ -60,4 +60,8 @@ export default {
     },
 }
 </script>
-<style lang=""></style>
+<style lang="scss">
+table {
+    background-color: white;
+}
+</style>

@@ -19,23 +19,22 @@ import Liderboard from './components/Liderboard.vue'
 export default {
     name: 'App',
     data: function() {
-        return { isMenuOpen: false }
+        return { isMenuOpen: true }
     },
     components: { Liderboard, GameInfo },
 }
 </script>
 
 <style lang="scss">
+.page-container {
+    background-image: url('./assets/background.png');
+}
 .game-info {
     position: absolute;
     top: 0;
     left: 75%;
     z-index: 1;
     width: 25%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: 0.5s;
     transform: translateX(100%);
 
