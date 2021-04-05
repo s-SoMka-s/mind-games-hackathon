@@ -57,6 +57,7 @@ export default {
     &__active {
         //transform: translateX(-30%);
         max-width: 70%;
+        overflow-x: hidden;
     }
 }
 </style>

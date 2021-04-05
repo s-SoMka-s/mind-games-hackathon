@@ -1,8 +1,6 @@
 <template>
     <div class="game-info">
-        <div class="game-info__board">
-            <img src="../assets/board.png" />
-        </div>
+        <gameboard :rows="10" :columns="10"></gameboard>
         <div class="game-info__controls">
             <div class="game-info__controls-item">
                 <button>
@@ -57,8 +55,10 @@
     </div>
 </template>
 <script>
+import Gameboard from './Gameboard.vue'
 export default {
     name: 'Game-Info',
+    components: { Gameboard },
 }
 </script>
 <style lang="scss">
@@ -74,16 +74,10 @@ export default {
 $color-red: #e03e3b;
 $color-black: #3c3c3a;
 $color-white: #ffffff;
+$color-yellow: #fbc467;
 
 .game-info {
     background-color: white;
-
-    &__board {
-        max-width: 100%;
-        img {
-            max-width: 100%;
-        }
-    }
 
     &__controls {
         width: 100%;
