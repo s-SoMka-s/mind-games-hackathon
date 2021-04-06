@@ -1,16 +1,20 @@
 <template>
     <div class="game-info">
-        <gameboard :rows="10" :columns="10"></gameboard>
+        <gameboard
+            :size="size"
+            :stone="stone"
+            :moveNumber="moveNumber"
+        ></gameboard>
         <div class="game-info__controls">
             <div class="game-info__controls-item">
-                <button>
+                <button v-on:click="onPrvClick">
                     <span class="game-info__controls-item-text"
                         >Previous move</span
                     >
                 </button>
             </div>
             <div class="game-info__controls-item">
-                <button>
+                <button v-on:click="onNextClick">
                     <span class="game-info__controls-item-text">Next move</span>
                 </button>
             </div>
@@ -59,6 +63,29 @@ import Gameboard from './Gameboard.vue'
 export default {
     name: 'Game-Info',
     components: { Gameboard },
+    data: function() {
+        return { stone: {}, size: 5, moveNumber: 0 }
+    },
+    methods: {
+        onNextClick: function() {
+            var x = 3
+            var y = 3
+            this.stone.x = x
+            this.stone.y = y
+            this.stone.color = 'black'
+            this.moveNumber += 1
+            console.log(this.stone)
+        },
+        onPrvClick: function() {
+            var x = 2
+            var y = 2
+            this.stone.x = x
+            this.stone.y = y
+            this.stone.color = 'white'
+            this.moveNumber -= 1
+            console.log(this.stone)
+        },
+    },
 }
 </script>
 <style lang="scss">
