@@ -79,12 +79,13 @@ export default {
 
             fetch(url, options)
                 .then(response => response.json())
-                .then(
-                    names =>
-                        (this.users = names.map(
-                            name => new User(1, name, null, 1000)
-                        ))
-                )
+                .then(names => {
+                    const users = []
+                    for (var id = 0; id < names.length; id++) {
+                        users.push(new User(id + 1, name, null, 1000))
+                    }
+                    this.users = users
+                })
                 .catch(error => console.log('error', error))
         },
     },
