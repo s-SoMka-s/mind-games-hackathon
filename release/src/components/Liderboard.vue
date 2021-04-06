@@ -82,7 +82,7 @@ export default {
                 .then(names => {
                     const users = []
                     for (var id = 0; id < names.length; id++) {
-                        users.push(new User(id + 1, name, null, 1000))
+                        users.push(new User(id + 1, names[id], null, 1000))
                     }
                     this.users = users
                 })
