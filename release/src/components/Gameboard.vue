@@ -64,7 +64,6 @@ export default {
         var canvas = document.getElementById('draw-field')
         this.fitToContainer(canvas)
         var ctx = canvas.getContext('2d')
-        console.log(ctx)
 
         const gap = canvas.offsetWidth / this.size
 

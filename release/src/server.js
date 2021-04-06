@@ -11,6 +11,51 @@ app.use((req, res, next) => {
     next()
 })
 
+app.get('/api/reg', (request, response) => {
+    const fetch = require('node-fetch')
+
+    var myHeaders = new fetch.Headers()
+
+    myHeaders.append('Cookie', cookie)
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+        credentials: 'include',
+    }
+
+    fetch('https://www.gokgs.com/json-cors/access', requestOptions)
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            response.send(result)
+        })
+        .catch(error => console.log('error', error))
+})
+
+app.post('/api/reg', function(r, res) {
+    const body = r.body
+    const fetch = require('node-fetch')
+    console.log(JSON.stringify(body))
+
+    var myHeaders = new fetch.Headers()
+    myHeaders.append('Content-Type', 'application/json')
+
+    url = 'https://www.gokgs.com/json-cors/access'
+
+    const options = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(body),
+    }
+
+    fetch(url, options).then(response => {
+        cookie = response.headers.get('set-cookie')
+        res.send(cookie)
+    })
+})
+
 app.get('/api', (request, response) => {
     const fetch = require('node-fetch')
 
@@ -41,6 +86,7 @@ app.post('/api', function(r, res) {
 
     var myHeaders = new fetch.Headers()
     myHeaders.append('Content-Type', 'application/json')
+    myHeaders.append('Cookie', cookie)
 
     url = 'https://www.gokgs.com/json-cors/access'
 
@@ -48,12 +94,13 @@ app.post('/api', function(r, res) {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(body),
+        credentials: 'include',
     }
 
-    fetch(url, options).then(response => {
-        cookie = response.headers.get('set-cookie')
-        res.send(cookie)
-    })
+    fetch(url, options)
+        .then(response => response.text())
+        .then(result => res.send(result))
+        .catch(error => console.log('error', error))
 })
 
 app.get('/parse', (request, response) => {

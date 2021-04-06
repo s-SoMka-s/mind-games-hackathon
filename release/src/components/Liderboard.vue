@@ -29,12 +29,16 @@
                     {{ user.score }}
                 </td>
                 <td>
-                    <span class="body__row-textbtn" v-on:click="emitToParent"
+                    <span
+                        class="body__row-textbtn"
+                        v-on:click="emitToParent(user.name, 1)"
                         >Game_1</span
                     >
                 </td>
                 <td>
-                    <span class="body__row-textbtn" v-on:click="emitToParent"
+                    <span
+                        class="body__row-textbtn"
+                        v-on:click="emitToParent(user.name, 2)"
                         >Game_2</span
                     >
                 </td>
@@ -66,9 +70,8 @@ export default {
         this.loadUsers()
     },
     methods: {
-        emitToParent(event) {
-            console.log('clicked')
-            this.$emit('onRowClick', !this.isPannelOpened)
+        emitToParent(event, gameId) {
+            this.$emit('onRowClick', !this.isPannelOpened, event, gameId)
         },
 
         loadUsers: function() {
@@ -141,6 +144,11 @@ table {
 
             &-textbtn {
                 cursor: pointer;
+
+                &:hover {
+                    background-color: $color-red;
+                    border-radius: 10px;
+                }
             }
         }
     }

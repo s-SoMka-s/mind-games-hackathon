@@ -1,7 +1,7 @@
 <template>
-    <div class="game-info" v-if="isPannelOpened">
+    <div class="game-info" v-if="info.size">
         <gameboard
-            :size="size"
+            :size="info.size"
             :stone="stone"
             :moveNumber="moveNumber"
         ></gameboard>
@@ -21,10 +21,14 @@
         </div>
         <div class="game-info__totals">
             <div class="game-info__totals-item">
-                <span class="game-info__totals-item-text">Score: 228</span>
+                <span class="game-info__totals-item-text"
+                    >Score: {{ info.score }}</span
+                >
             </div>
             <div class="game-info__totals-item">
-                <span class="game-info__totals-item-text">Score: 228</span>
+                <span class="game-info__totals-item-text"
+                    >duration: {{ info.duration }}</span
+                >
             </div>
         </div>
         <div class="game-info__players">
@@ -76,15 +80,16 @@ export default {
             name2: String,
             color1: String,
             color2: String,
+            score: String,
+            duration: String,
+            size: Number,
         },
     },
     data: function() {
-        return { stone: {}, size: 5, moveNumber: 0 }
+        return { stone: {}, moveNumber: 0 }
     },
     watch: {
-        isPannelOpened: function() {
-            console.log(this.info)
-        },
+        isPannelOpened: function() {},
     },
     methods: {
         onNextClick: function() {
@@ -94,7 +99,6 @@ export default {
             this.stone.y = y
             this.stone.color = 'black'
             this.moveNumber += 1
-            console.log(this.stone)
         },
         onPrvClick: function() {
             var x = 2
@@ -103,7 +107,6 @@ export default {
             this.stone.y = y
             this.stone.color = 'white'
             this.moveNumber -= 1
-            console.log(this.stone)
         },
     },
 }
