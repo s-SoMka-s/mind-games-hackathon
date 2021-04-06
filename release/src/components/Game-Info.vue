@@ -1,5 +1,5 @@
 <template>
-    <div class="game-info">
+    <div class="game-info" v-if="isPannelOpened">
         <gameboard
             :size="size"
             :stone="stone"
@@ -29,15 +29,21 @@
         </div>
         <div class="game-info__players">
             <div class="game-info__players-item">
-                <img src="../assets/black.png" /><span
-                    class="game-info__players-item-text"
-                    >Andrew Fisher - W</span
+                <img v-if="info.color1 === 'black'" src="../assets/black.png" />
+                <img
+                    v-if="info.color1 === 'white'"
+                    src="../assets/white.png"
+                /><span class="game-info__players-item-text"
+                    >{{ info.name1 }} - W</span
                 >
             </div>
             <div class="game-info__players-item">
-                <img src="../assets/white.png" /><span
-                    class="game-info__players-item-text"
-                    >Daniel Nicola - L</span
+                <img v-if="info.color2 === 'white'" src="../assets/white.png" />
+                <img
+                    v-if="info.color2 === 'black'"
+                    src="../assets/black.png"
+                /><span class="game-info__players-item-text"
+                    >{{ info.name2 }} - L</span
                 >
             </div>
         </div>
@@ -63,8 +69,22 @@ import Gameboard from './Gameboard.vue'
 export default {
     name: 'Game-Info',
     components: { Gameboard },
+    props: {
+        isPannelOpened: Boolean,
+        info: {
+            name1: String,
+            name2: String,
+            color1: String,
+            color2: String,
+        },
+    },
     data: function() {
         return { stone: {}, size: 5, moveNumber: 0 }
+    },
+    watch: {
+        isPannelOpened: function() {
+            console.log(this.info)
+        },
     },
     methods: {
         onNextClick: function() {
@@ -152,6 +172,16 @@ $color-yellow: #fbc467;
                 color: $color-black;
                 @include general-text;
             }
+        }
+    }
+
+    &__additional {
+        &-title {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: $color-black;
+            @include general-text;
         }
     }
 }

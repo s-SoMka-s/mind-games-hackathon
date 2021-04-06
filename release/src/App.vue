@@ -8,6 +8,8 @@
         ></liderboard>
         <game-info
             class="game-info"
+            :info="gameInfo"
+            :isPannelOpened="isPannelOpened"
             :class="{ 'game-info__active': isPannelOpened }"
         ></game-info>
     </div>
@@ -19,13 +21,21 @@ import Liderboard from './components/Liderboard.vue'
 export default {
     name: 'App',
     data: function() {
-        return { isPannelOpened: true }
+        return { isPannelOpened: false, gameInfo: {} }
     },
     components: { Liderboard, GameInfo },
     methods: {
         onRowClick(value) {
-            console.log('clicked')
             this.isPannelOpened = value
+            this.loadGameInfo()
+        },
+
+        loadGameInfo: function() {
+            this.gameInfo.name1 = 'Andrey Fisher'
+            this.gameInfo.name2 = 'Daniel Nicola'
+            this.gameInfo.color1 = 'black'
+            this.gameInfo.color2 = 'white'
+            console.log(this.gameInfo)
         },
     },
 }
