@@ -35,8 +35,7 @@ class Game {
         color1 = 'white',
         name2 = 'Daniel Nikola',
         color2 = 'black',
-        size = 19,
-        moves = []
+        size = 19
     ) {
         this.id = id
         this.score = score
@@ -45,8 +44,10 @@ class Game {
         this.name2 = name2
         this.color1 = color1
         this.color2 = color2
+        this.size = size
+    }
+    setMoves(moves) {
         this.moves = moves
-        this.size = 19
     }
 }
 import GameInfo from './components/Game-Info.vue'
@@ -118,9 +119,93 @@ export default {
                 'black',
                 currGame.players.white.name,
                 'white',
-                currGame.size,
-                []
+                currGame.size
             )
+            this.igame(currGame.timestamp)
+        },
+        igame: function(timestamp) {
+            console.log('ROOM_LOAD_GAME')
+            const data = {
+                type: 'ROOM_LOAD_GAME',
+                timestamp: timestamp,
+                private: true,
+                channelId: '31',
+            }
+
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                redirect: 'follow',
+            }
+
+            fetch('http://localhost:3000/api', requestOptions)
+                .then(res => res.text())
+                .then(res => this.getigame())
+                .catch(error => console.log('error', error))
+        },
+        parseMoves: function(raw) {
+            const sgfEvents = []
+            class Move {
+                constructor(
+                    x = 1,
+                    y = 1,
+                    name = 'MOVE',
+                    color = 'black',
+                    id = 0
+                ) {
+                    this.x = x
+                    this.y = y
+                    this.color = color
+                    this.name = name
+                    this.id = id
+                }
+            }
+
+            const moves = []
+            console.log(raw)
+            for (var i = 0; i < raw['messages'].length; i++) {
+                if (raw['messages'][i]['sgfEvents'])
+                    sgfEvents.push(raw['messages'][i]['sgfEvents'])
+            }
+
+            for (var i = 1; i < sgfEvents[0].length; i++) {
+                if (sgfEvents[0][i].type === 'PROP_GROUP_ADDED') {
+                    //console.log(sgfEvents[0][i].props[0].loc)
+                    moves.push(
+                        new Move(
+                            sgfEvents[0][i].props[0].loc.x,
+                            sgfEvents[0][i].props[0].loc.y,
+                            sgfEvents[0][i].props[0].color,
+                            sgfEvents[0][i].props[0].name,
+                            sgfEvents[0][i].nodeId
+                        )
+                    )
+                }
+            }
+            //moves.push(new Move())
+            return moves
+        },
+        getigame: function() {
+            var requestOptions = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+
+            fetch('http://localhost:3000/api', requestOptions)
+                .then(response => response.json())
+                .then(res => this.parseMoves(res))
+                .then(moves => this.gameInfo.setMoves(moves))
+                .catch(error => console.log('error', error))
+        },
+        genMoves: function() {
+            const moves = []
+            for (var x, y = 0; x < 10; x++, y++) moves.push(new Move())
+            return moves
         },
         postLoging: function() {
             const data = {

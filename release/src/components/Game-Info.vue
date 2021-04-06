@@ -1,4 +1,4 @@
-<template>
+<template v-if="info.timestamp">
     <div class="game-info" v-if="info.size">
         <gameboard
             :size="info.size"
@@ -69,6 +69,16 @@
     </div>
 </template>
 <script>
+export class Move {
+    constructor(x = 1, y = 1, name = 'MOVE', color = 'black', id = 0) {
+        this.x = x
+        this.y = y
+        this.color = color
+        this.name = name
+        this.id = 0
+    }
+}
+
 import Gameboard from './Gameboard.vue'
 export default {
     name: 'Game-Info',
@@ -83,29 +93,32 @@ export default {
             score: String,
             duration: String,
             size: Number,
+            moves: Array,
+            timestamp: String,
         },
     },
     data: function() {
         return { stone: {}, moveNumber: 0 }
     },
+    mounted: function() {},
     watch: {
         isPannelOpened: function() {},
     },
     methods: {
         onNextClick: function() {
-            var x = 3
-            var y = 3
-            this.stone.x = x
-            this.stone.y = y
-            this.stone.color = 'black'
+            const step = this.info.moves[this.moveNumber]
+            console.log(step)
+            this.stone.x = step.x
+            this.stone.y = step.y
+            this.stone.color = step.name
             this.moveNumber += 1
         },
         onPrvClick: function() {
-            var x = 2
-            var y = 2
-            this.stone.x = x
-            this.stone.y = y
-            this.stone.color = 'white'
+            const step = this.info.moves[this.moveNumber]
+            console.log(step)
+            this.stone.x = step.x
+            this.stone.y = step.y
+            this.stone.color = step.name
             this.moveNumber -= 1
         },
     },
